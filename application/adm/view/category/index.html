@@ -1,0 +1,164 @@
+{include file="public/header"}
+
+<script src="/static/lib/sortable/Sortable.js"></script>
+
+<style>
+	#sortable {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		width: 60%;
+	}
+	
+	#sortable li {
+		margin: 0 3px 3px 3px;
+		padding: 0.4em;
+		padding-left: 1.5em;
+		font-size: 1.4em;
+		height: 18px;
+	}
+	
+	#sortable li span {
+		position: absolute;
+		margin-left: -1.3em;
+	}
+</style>
+
+<script>
+    function onStart(evt) {
+        groups = [];
+        $(evt.item).parent().children().each(function (i, v) {
+            groups.push($(v).attr("data-gid"));
+        });
+    }
+
+    function onEnd(evt) {
+        var oldIndex = evt.oldIndex;
+        var newIndex = evt.newIndex;
+        if (oldIndex === newIndex) {
+            return false;
+        }
+        post("/adm/Category/apiMoveTo", {
+            gid: groups[oldIndex],
+            pos: groups[newIndex],
+        }, function () {
+        });
+    }
+</script>
+
+<div class="row">
+	<div class="col-0 col-sm-0 col-md-1 col-lg-2 col-xl-2 ">
+	</div>
+	<div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+		<div class="mt15 mb15" id="accordion">
+			<div class="alert alert-info alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				点击一级栏目名,可以 展开/折叠 其子分组; 拖拽分组即可进行排序
+			</div>
+			{foreach name="glist" item="vo" key="k"}
+			<div class="card" id="cgItem-{$vo.id}" data-gid="{$vo.id}">
+				<div class="card-header">
+					<div class="row">
+						<div class="col-9">
+							<a class="collapsed card-link" data-toggle="collapse" data-parent="#accordion" href="#{$vo.id}" id="cgTitle-{$vo.id}">
+								{$vo.title}
+							</a>
+						</div>
+						<div class="col-1">
+							<button type="button" class="btn btn-link" onclick="cgDel('{$vo.id}');">删除</button>
+						</div>
+						<div class="col-1">
+							<button type="button" class="btn btn-link text-right" onclick="cgEdit('{$vo.id}','{$vo.title}');">
+								修改
+							</button>
+						</div>
+					</div>
+				</div>
+				<div id="{$vo.id}" class="collapse">
+					<div class="card-block">
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<tbody id="subGroup-{$vo.id}">
+								{foreach name="vo.child" item="sv"}
+								<tr id="cgItem-{$sv.id}" data-gid="{$sv.id}">
+									<td id="cgTitle-{$sv.id}">{$sv.title}</td>
+									<td>
+										<button type="button" class="btn btn-primary btn-sm" onclick="cgDel('{$sv.id}');">
+											删除
+										</button>
+										<button type="button" class="btn btn-primary btn-sm" onclick="cgEdit('{$sv.id}','{$sv.title}');">
+											修改
+										</button>
+									</td>
+								</tr>
+								<script>
+                                    new Sortable(document.getElementById('subGroup-{$vo.id}'), {
+                                        onStart: onStart,
+                                        onEnd: onEnd,
+                                    });
+								</script>
+								{/foreach}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			{/foreach}
+		</div>
+	</div>
+</div>
+
+<script>
+
+    var groups = [];
+    new Sortable(document.getElementById('accordion'), {
+        onStart: onStart,
+        onEnd: onEnd,
+    });
+
+    function cgDel(id) {
+        layer.confirm("确定要删除吗", function (index) {
+
+            $.post("apiDel", {id: id}, function (res) {
+                layer.msg(res.msg);
+
+                if (res.code != 1) {
+                    return false;
+                }
+
+                $("#cgItem-" + id).remove();
+            });
+
+            layer.close(index);
+        });
+    }
+
+    function cgEdit(id, titleOld) {
+        layer.prompt({
+            formType: 0,
+            value: titleOld,
+            title: '请输入新栏目名',
+
+        }, function (value, index, elem) {
+
+            $.post("apiEdit", {
+                id: id,
+                title: value
+            }, function (res) {
+                layer.msg(res.msg);
+
+                if (res.code != 1) {
+                    return false;
+                }
+
+                $("#cgTitle-" + id).html(value);
+            });
+
+            layer.close(index);
+        });
+    }
+
+</script>
+
+{include file="public/footer"}
