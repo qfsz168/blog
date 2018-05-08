@@ -56,7 +56,7 @@ class BaseController extends Controller {
      *                          [ "age",  18, "d",  "number|<=:150|>:0"],
      *                          [ "sex",  null, "s",  "require"],
      *                          ]
-     * @return void
+     * @return array|null|void
      */
     protected function I($paramsInfo) {
         //数据接收&校验
@@ -113,7 +113,7 @@ class BaseController extends Controller {
 
         $vali = $this->validate(self::$_i, $rule);
         if ($vali === true) {
-            return;
+            return self::$_i;
         }
 
         $msg = "";

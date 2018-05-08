@@ -1,5 +1,255 @@
 {include file="public/header" /}
 
+<link rel="stylesheet" href="/static/lib/bootstrap3.3.5/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/frontend/index/index.css">
 
+<script src="/static/lib/slider.js"></script>
+<script src="/static/lib/bootstrap3.3.5/bootstrap.min.js"></script>
+
+<style type="text/css">
+	.banner_left {
+		display: none !important;
+	}
+	
+	.banner_index {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: 0 0 100% !important;
+		padding: 0 !important;
+	}
+	
+	body {
+		font-size: 12px;
+	}
+	
+	.navbar-dark .navbar-nav .nav-link {
+		font-size: 1rem !important;
+	}
+</style>
+
+<!--banner部分-->
+<div id="banner_tabs" class="flexslider container-fluid">
+	<ul class="slides row">
+		<li class="carousel-inner">
+			<a title="" target="_blank" href="#">
+				<img width="1920" alt="" style="background: url(/static/img/frontend/index/index/20160721ntisfh.jpg) no-repeat center;" src="/static/img/frontend/index/index/20170120tobuqy.jpg">
+			</a>
+		</li>
+		<li class="carousel-inner">
+			<a title="" href="#">
+				<img width="1920" alt="" style="background: url(/static/img/frontend/index/index/20160721uvmcix.jpg) no-repeat center;" src="/static/img/frontend/index/index/20160721uvmcix.jpg">
+			</a>
+		</li>
+	</ul>
+</div>
+
+<!--公告-->
+<div id="index" class="wrap mb container " style="margin:0 auto; ">
+	<div class="youngGirl">
+		<ul class="ctn mgc cf notice letf" style="white-space: nowrap!important;">
+			{volist name="notice" id="vo"}
+			<li>
+                <span>
+                    <a href="/index/Article/content/id/{$vo.id}.html" target="_blank" title="{$vo.content}">{$vo.title}</a>
+                </span>
+			</li>
+			{/volist}
+		</ul>
+		<div class="more">
+			<a href="/index/Article/index/gid/{$noticeGroupId}.html" target="_blank" class="getmore">更多</a>
+		</div>
+	</div>
+</div>
+
+<!--产品分类开始-->
+<section class="container-fluid">
+	<div class="bgcolor container text-center icon3">
+		<div class="conWidth">
+			<div class="business">
+				<ul class="row">
+					<li class="col-sm-6 col-md-3">
+						<div class="thumbnail item">
+							<a href="/index/Article/index/gid/f5871ee3-44e1-2605-16f9-a675e564e2cd.html">
+								<p>
+									<img src="/static/img/frontend/index/index/p2p-1.png" alt="">
+								</p>
+								<span style="color:#2bb2f6">澳洲移民</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-sm-6 col-md-3">
+						<div class="thumbnail item">
+							<a href="/index/Article/index/gid/d589812a-0f8d-9aa0-1a59-418b926f9f81.html">
+								<p>
+									<img src="/static/img/frontend/index/index/zc2.png" alt="">
+								</p>
+								<span style="color:#2bb2f6">澳洲投资</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-sm-6 col-md-3">
+						<div class="thumbnail item">
+							<a href="/index/Article/index/gid/77ec860d-8b77-a824-20cc-2d36afabc029.html">
+								<p>
+									<img src="/static/img/frontend/index/index/phonephone.png" alt="">
+								</p>
+								<span style="color:#2bb2f6">澳洲旅游</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-sm-6 col-md-3">
+						<div class="thumbnail item">
+							<a href="/index/Article/index/gid/cba676bf-4c03-ec22-1a72-a944138866d2.html">
+								<p>
+									<img src="/static/img/frontend/index/index/app33.png" alt="">
+								</p>
+								<span style="color:#2bb2f6">澳洲签证</span>
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--服务特色开始-->
+	<div class="container conWidth">
+		<div class="product-tit">
+			<div class="line"></div>
+			<div class="titText">服务特色</div>
+		</div>
+		<div class="product">
+			<ul class="row">
+				<li class="col-xs-12 col-md-6">
+					<div class="product-icon">
+						<span class="c1 iconfont   icff"></span>
+					</div>
+					<div class="product-con">
+						<div class="product-con-tit">
+							<div>
+								<p>12年办理经验</p>
+								<span class="ca"></span>
+							</div>
+						</div>
+						<div class="product-con-text">
+							12年的经验积累，对澳洲移民法了如指掌，为客户量身打造最适合您和家人的移民方案。
+						</div>
+					</div>
+				</li>
+				<li class="col-xs-12 col-md-6">
+					<div class="product-icon">
+						<span class="c2 iconfont   icff"></span>
+					</div>
+					<div class="product-con">
+						<div class="product-con-tit">
+							<div>
+								<p>4重材料审核制度</p>
+								<span class="cb"></span>
+							</div>
+						</div>
+						<div class="product-con-text">
+							经验丰富的文案团队，为客户层层把关，保证您的材料符合移民局要求，详实完备。
+						</div>
+					</div>
+				</li>
+				<li class="col-xs-12 col-md-6">
+					<div class="product-icon">
+						<span class="c3 iconfont   icff"></span>
+					</div>
+					<div class="product-con">
+						<div class="product-con-tit">
+							<div>
+								<p>3个海外机构</p>
+								<span class="cc"></span>
+							</div>
+						</div>
+						<div class="product-con-text">
+							为了更好地服务登陆客户，我们在澳洲的悉尼、墨尔本、阿德莱德分别设立了服务机构。
+						</div>
+					</div>
+				</li>
+				<li class="col-xs-12 col-md-6">
+					<div class="product-icon">
+						<span class="c4 iconfont   icff"></span>
+					</div>
+					<div class="product-con">
+						<div class="product-con-tit">
+							<div>
+								<p>0费用安家</p>
+								<span class="cd"></span>
+							</div>
+						</div>
+						<div class="product-con-text">
+							澳洲签证为客户提供免费安居、子女入学、生意建立及拓展在澳人际关系等方面的服务和支持。
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--服务特色结束-->
+	<!--新闻动态开始-->
+	<div class="container  conWidth">
+		<div class="product-tit">
+			<div class="line"></div>
+			<div class="titText">新闻动态</div>
+		</div>
+		<div class="news row">
+			{volist name="news" id="vo"}
+			<div class="news_left left col-sm-6">
+				<div class="tit">
+					<span></span>
+					<i>{$vo.groupName}</i>
+					<a href="/index/Article/index/gid/{$vo.groupId}.html" target="_blank">查看更多&gt;&gt;</a>
+				</div>
+				<div class="new_con">
+					<div class="img">
+						<img src="{$vo.list.0.cover}">
+					</div>
+					<div class="nr">
+						<p>
+							<a href="/index/Article/content/id/{$vo.list.0.id}.html" title="{$vo.list.0.content}" target="_blank">{$vo.list.0.title}</a>
+						</p>
+						<span>
+                   {$vo.list.0.content}
+                    </span>
+					</div>
+				</div>
+				<div class="news_list">
+					<ul>
+						{volist name="vo.list" id="sv" offset="1"}
+						<li>
+							<a href="/index/Article/content/id/{$sv.id}.html" title="{$vo.list.0.content}" target="_blank">{$sv.title}</a>
+							<span>{$sv.create_time}</span>
+						</li>
+						{/volist}
+					</ul>
+				</div>
+			</div>
+			{/volist}
+		</div>
+	</div>
+	<!--新闻动态结束-->
+</section>
+<!--产品分类结束-->
+
+<script type="text/javascript">
+    $(function () {
+        var bannerSlider = new Slider($('#banner_tabs'), {
+            time: 5000,
+            delay: 400,
+            event: 'hover',
+            auto: true,
+            mode: 'fade',
+            controller: $('#bannerCtrl'),
+            activeControllerCls: 'active'
+        });
+        $('#banner_tabs .flex-prev').click(function () {
+            bannerSlider.prev()
+        });
+        $('#banner_tabs .flex-next').click(function () {
+            bannerSlider.next()
+        });
+    })
+</script>
 
 {include file="public/footer" /}

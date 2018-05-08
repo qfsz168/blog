@@ -67,3 +67,7 @@ section {
 .pd15 {
 	padding: 15px !important;
 }
+
+.pointer {
+	cursor: pointer !important;
+}

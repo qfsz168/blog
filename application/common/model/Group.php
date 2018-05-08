@@ -549,7 +549,7 @@ class Group extends Model
      * 分组列表
      * @author 王崇全
      * @date
-     * @param string|null $type    组类型
+     * @param string|null $type    组类型  ('article', 'config', 'user', 'adminer')
      * @param string|null $pgid    父组ID
      * @param bool        $onlySon 仅包括直接子节点
      * @return array|false|\PDOStatement|string|\think\Collection

@@ -7,6 +7,7 @@
  */
 namespace app\adm\controller;
 
+use app\common\model\GroupRole;
 use think\Request;
 use app\common\model\Group;
 
@@ -100,7 +101,6 @@ class CategoryController extends BaseController
         }
 
         $this->success("删除成功");
-
     }
 
     public function apiEdit() {
@@ -155,6 +155,48 @@ class CategoryController extends BaseController
         }
 
         $this->success("修改成功");
+    }
+
+    public function apiSetNotice() {
+        $in = $this->I([
+            [
+                "id|栏目编号",
+                null,
+                "s",
+                "require",
+            ],
+        ]);
+
+        $gr = new GroupRole();
+
+        try {
+            $gr->setRole($in["id"], "notice");
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
+
+        $this->success("操作成功");
+    }
+
+    public function apiSetNews() {
+        $in = $this->I([
+            [
+                "id|栏目编号",
+                null,
+                "s",
+                "require",
+            ],
+        ]);
+
+        $gr = new GroupRole();
+
+        try {
+            $gr->setRole($in["id"], "news");
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
+
+        $this->success("操作成功");
     }
 
 }

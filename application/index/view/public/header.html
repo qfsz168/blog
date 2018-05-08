@@ -27,6 +27,7 @@
 	
 	<style>
 	</style>
+</head>
 
 <body>
 
@@ -35,8 +36,8 @@
 
 <!--导航栏-->
 <nav class="navbar navbar-expand-md bg-dark navbar-dark bgc-nav">
-	<a class="navbar-brand bgc-nav" href="/index/Index/index.html" style="margin-right: 58px;">
-		<img src="/static/img/logo.png" height="80"/></head>
+	<a class="navbar-brand bgc-nav" href="/" style="margin-right: 58px;">
+		<img src="/static/img/logo.png" height="80" style="width: 200px;"/></head>
 	</a>
 	
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -45,6 +46,9 @@
 	
 	<div class="collapse navbar-collapse bgc-nav" id="collapsibleNavbar">
 		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" id="nav-index" href="/">主页</a>
+			</li>
 			{volist name="$navs" id="vo"}
 			{notempty name="$vo.child"}
 			<li class="nav-item dropdown">
@@ -70,6 +74,6 @@
 <!--内容-->
 <section class="container-fluid">
 	<div class="row">
-		<div class="col-0 col-sm-0 col-md-0 col-lg-2 col-xl-2"></div>
-		<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 bgc-content">
+		<div class="col-0 col-sm-0 col-md-0 col-lg-2 col-xl-2 banner_left"></div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 bgc-content banner_index">
 			<!--未封闭的标签在footer.html中-->
